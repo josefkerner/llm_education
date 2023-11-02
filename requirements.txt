@@ -7,3 +7,6 @@ accelerate
 azure-ai-ml
 jsonlines
 anthropic
+openai
+tenacity
+tiktoken
