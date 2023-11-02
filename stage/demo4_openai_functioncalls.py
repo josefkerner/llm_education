@@ -65,6 +65,8 @@ class OpenAIcalls:
 
             # verify function has correct number of arguments
             function_args = json.loads(response_message["function_call"]["arguments"])
+            print("Function arguments:")
+            print(function_args)
             if OpenAIcalls.check_args(function_to_call, function_args) is False:
                 return "Invalid number of arguments for function: " + function_name
             function_response = function_to_call(**function_args)
@@ -92,7 +94,7 @@ class OpenAIcalls:
                             "description": "The location name. The pytz is used to get the timezone for that location. Location names should be in a format like America/New_York, Asia/Bangkok, Europe/London",
                         }
                     },
-                    "required": ["location"],
+                    "required": ["location"], #inferred by GPT
                 },
             }
 
