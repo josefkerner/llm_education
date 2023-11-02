@@ -16,17 +16,18 @@ class LammaFinetuner:
     def load_training_data(self):
         data_name = "mlabonne/guanaco-llama2-1k"
         training_data = load_dataset(data_name, split="train")
+        print(training_data.data)
         return training_data
-    def test_finetuning(self):
+    def test_finetuning(self, training_data):
         '''
         Will test finetuning on a specific dataset
+        :param training_data:
         :return:
         '''
-        # Model and tokenizer names
+        # Load model
+        self.llm.load_model()
 
-        refined_model = "llama-2-7b-mlabonne-enhanced"  # You can give it your own name
-
-        training_data = self.load_training_data()
+        refined_model = "llama-2-7b-granton"  # You can give it your own name
 
         # LoRA Config
         peft_parameters = LoraConfig(
@@ -77,4 +78,5 @@ class LammaFinetuner:
 
 if __name__ == "__main__":
     lft = LammaFinetuner()
-    lft.test_finetuning()
+    training_data = lft.load_training_data()
+    #lft.test_finetuning(training_data=training_data)

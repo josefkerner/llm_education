@@ -120,7 +120,17 @@ class inContextExampleManager:
                         input_variables: List[str],
                         prefix: str, suffix: str,
                         type: str,
-                        num_examples: int = 2):
+                        num_examples: int = 2) -> FewShotPromptTemplate:
+        '''
+        Returns a FewShotPromptTemplate
+        :param selection_strategy:
+        :param input_variables:
+        :param prefix:
+        :param suffix:
+        :param type:
+        :param num_examples:
+        :return:
+        '''
 
         if os.name == 'nt':
             os.environ['REQUESTS_CA_BUNDLE'] = "C:/python/openai/openai.crt"

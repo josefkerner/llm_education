@@ -63,7 +63,8 @@ class EmbeddingManager:
         #convert list of vectors to numpy array
         matrix = np.array(matrix.tolist())
 
-        tsne = TSNE(n_components=2, perplexity=15, random_state=42, init='random', learning_rate=200)
+        tsne = TSNE(n_components=2, perplexity=15, random_state=42, init='random',
+                    learning_rate=200)
         vis_dims = tsne.fit_transform(matrix)
 
         colors = ["red", "darkorange", "gold", "blue", "darkgreen"]
@@ -73,6 +74,11 @@ class EmbeddingManager:
 
         colormap = matplotlib.colors.ListedColormap(colors)
         plt.scatter(x, y, c=color_indices, cmap=colormap, alpha=0.3)
+        #add legend for colors to plot
+        handles = [matplotlib.patches.Patch(color=colors[i], label=f"{i+1}") for i in range(5)]
+        plt.legend(handles=handles)
+        #add legend title
+        plt.gca().get_legend().set_title("Amazon rating")
         plt.title("Amazon ratings visualized in language using t-SNE")
         plt.show()
 

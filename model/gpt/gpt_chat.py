@@ -3,6 +3,7 @@ import openai
 from tenacity import (retry,stop_after_attempt,wait_random_exponential)
 from typing import List, Dict
 import tiktoken, os
+
 if os.name == 'nt':
     tiktoken_cache_dir = "C:/python/openai/rec_service/config/tiktoken_cache"
     os.environ["TIKTOKEN_CACHE_DIR"] = tiktoken_cache_dir
@@ -11,7 +12,8 @@ class GPT_turbo_model(Model):
     def __init__(self, cfg: Dict):
         self.cfg = cfg
         self.prompt_template = cfg['prompt_template'] if 'prompt_template' in cfg else None
-        self.MAX_CHARS = 4096
+        self.MAX_CHARS = 8000
+
     @staticmethod
     def estimate_tokens(prompt: List[Dict]):
         '''
@@ -19,7 +21,7 @@ class GPT_turbo_model(Model):
         :param prompt:
         :return:
         '''
-        contents = [prompt_part['content'] for prompt_part in prompt]
+        contents = [str(prompt_part['content']) for prompt_part in prompt]
         prompt_combined = " ".join(contents)
         enc = tiktoken.get_encoding("cl100k_base")
         encoded = enc.encode(prompt_combined)
@@ -53,7 +55,7 @@ class GPT_turbo_model(Model):
 
         return chunks, all_ids
 
-    def generate(self, prompts: List[str],temp: int = 0.0):
+    def generate(self, prompts: List[List[Dict]],temp: int = 0.0, functions: List[Dict] = None):
         '''
         Will generate content
         :param text:
@@ -74,8 +76,9 @@ class GPT_turbo_model(Model):
         all_chunk_ids = []
         for chunk, chunk_ids in zip(chunks, all_ids):
             all_chunk_ids = all_chunk_ids + chunk_ids
-            answers = self.call_chatgpt_turbo(
+            answers = self.call_n_parse(
                 prompts=chunk,
+                functions=functions,
                 config=self.cfg,
                 temp=temp
             )
@@ -86,30 +89,18 @@ class GPT_turbo_model(Model):
         assert len(prompts) == len(all_chunk_ids)
         return all_answers
 
-    def generate_batch(self, prompts: List[str]):
-        pass
-
-    @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(5))
-    def call_chatgpt_turbo(self,prompts: List[List[Dict]], config: Dict, temp: int = 0.0):
+    def call_n_parse(self, prompts, functions, config, temp: int = 0.0):
         '''
-        Will call GPT turbo model
-        prompts is a List of messages
+        Will call GPT turbo model and parse the results
         :param prompts:
+        :param functions:
         :param config:
+        :param temp:
         :return:
         '''
-        openai.api_key = os.environ["OPENAI_API_KEY"]
-        model_name = config['model_name'] if 'model_name' in config else "gpt-3.5-turbo"
-        max_tokens = config['max_tokens'] if 'max_tokens' in config else 256
-        temperature = config['temperature'] if 'temperature' in config else 0.0
         answers = []
         for prompt_messages in prompts:
-            response = openai.ChatCompletion.create(
-                model=model_name,
-                messages=prompt_messages,
-                temperature=temp if temp !=0.0 else temperature,
-                max_tokens=max_tokens
-            )
+            response = self.call_chatgpt(prompt_messages, functions, config, temp)
 
             for choice in response.choices:
                 text = choice.message.content
@@ -117,3 +108,39 @@ class GPT_turbo_model(Model):
 
         assert len(prompts) == len(answers)
         return answers
+
+
+    @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(5))
+    def call_chatgpt(self,prompt_messages,functions, config: Dict = None, temp: int = 0.0):
+        '''
+        Will call GPT turbo model
+        prompts is a List of messages
+        :param prompt_messages:
+        :param functions:
+        :param config:
+        :param temp:
+        :return:
+        '''
+        if config is None:
+            config = self.cfg
+        openai.api_key = os.environ['OPENAI_API_KEY']
+        model_name = config['model_name'] if 'model_name' in config else "gpt-4"
+        max_tokens = config['max_tokens'] if 'max_tokens' in config else 256
+        temperature = config['temperature'] if 'temperature' in config else 0.0
+        print(prompt_messages)
+        if functions is not None:
+            response = openai.ChatCompletion.create(
+                model=model_name,
+                messages=prompt_messages,
+                functions=functions,
+                temperature=temp if temp !=0.0 else temperature,
+                max_tokens=max_tokens
+            )
+        else:
+            response = openai.ChatCompletion.create(
+                model=model_name,
+                messages=prompt_messages,
+                temperature=temp if temp !=0.0 else temperature,
+                max_tokens=max_tokens
+            )
+        return response

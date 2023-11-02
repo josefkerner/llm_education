@@ -11,8 +11,11 @@ This class is currently not used, since llama is not deployed in WG environment
 
 class LlamaModel(Model):
     def __init__(self, cfg: Dict):
+        self.cfg = cfg
+
+    def load_model(self):
         # Tokenizer
-        self.tokenizer = AutoTokenizer.from_pretrained(cfg['model_name'],
+        self.tokenizer = AutoTokenizer.from_pretrained(self.cfg['model_name'],
                                                         trust_remote_code=True)
         self.tokenizer.pad_token = self.tokenizer.eos_token
         self.tokenizer.padding_side = "right"  # Fix for fp16
@@ -21,9 +24,10 @@ class LlamaModel(Model):
             bnb_4bit_compute_dtype=torch.bfloat16
         )
         self.model_bf16 = AutoModelForCausalLM.from_pretrained(
-            cfg['model_name'],
+            self.cfg['model_name'],
             quantization_config=quantization_config
         )
+        # modify model params to use cache
         self.model_bf16.config.use_cache = False
         self.model_bf16.config.pretraining_tp = 1
 
