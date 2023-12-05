@@ -125,7 +125,7 @@ class GPT_turbo_model(Model):
             config = self.cfg
         openai.api_key = os.environ['OPENAI_API_KEY']
         model_name = config['model_name'] if 'model_name' in config else "gpt-4"
-        max_tokens = config['max_tokens'] if 'max_tokens' in config else 256
+        max_tokens = config['max_tokens'] if 'max_tokens' in config else 4000
         temperature = config['temperature'] if 'temperature' in config else 0.0
         print(prompt_messages)
         if functions is not None:

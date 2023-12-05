@@ -89,6 +89,7 @@ class OpenAIcalls:
                 "parameters": {
                     "type": "object",
                     "properties": {
+
                         "location": {
                             "type": "string",
                             "description": "The location name. The pytz is used to get the timezone for that location. Location names should be in a format like America/New_York, Asia/Bangkok, Europe/London",
@@ -103,7 +104,8 @@ class OpenAIcalls:
             "get_current_time": OpenAIcalls.get_current_time,
             #place to add another function
         }
-        messages = [{"role": "user", "content": question}]
+        messages = [
+            {"role": "user", "content": question}]
         # generate answers from the function call with llm
         response = self.llm.call_chatgpt(
             prompt_messages=messages,
@@ -150,5 +152,5 @@ class OpenAIcalls:
 
 if __name__ == '__main__':
     openaiobj = OpenAIcalls()
-    question = "What is the time in San Francisco?"
+    question = "What is the time?"
     openaiobj.test_openai_function_call(question)

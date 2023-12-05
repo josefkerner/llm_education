@@ -117,7 +117,7 @@ What makes you a great candidate?
 
 if __name__ == '__main__':
     prompter = OpenAIPrompter()
-    prompter.test_base_prompt()
+    #prompter.test_base_prompt()
     #uncomment to test advanced prompt
-    #prompter.test_advanced_prompt()
+    prompter.test_advanced_prompt()
 
