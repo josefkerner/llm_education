@@ -1,6 +1,7 @@
 from typing import List, Dict, Tuple
 from agents.vectara_agent import VectaraAgent
 from model.anthropic.llm_model import AnthropicModel
+from rouge_score import rouge_scorer
 import json
 from prompts.prompt_templates import EVALUATE_LLM_ANSWER_PROMPT
 class ChatbotEvaluator:
@@ -35,6 +36,7 @@ class ChatbotEvaluator:
                                             model_answer=actual_answer,
                                             expected_answer=answer)
             print(response)
+            print('-------------------------------------------------------------------------------')
             scores.append(score)
         #average the scores
         avg_scores = {}
@@ -70,7 +72,6 @@ class ChatbotEvaluator:
         :param expected_answer:
         :return:
         '''
-        from rouge_score import rouge_scorer
         scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
         print('actual answer', actual_answer)
         print('expected answer', expected_answer)
