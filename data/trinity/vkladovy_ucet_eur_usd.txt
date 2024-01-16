@@ -1,0 +1,24 @@
+Vkladový účet EUR, USD
+Devizový vkladový účet splňuje požadavky na pravidelné či nepravidelné spoření. Vaše vklady jsou úročeny progresivně, a to podle výše aktuálního zůstatku na účtu a zvolené délky výpovědní doby vkladu.
+
+DEVIZOVÝ VKLADOVÝ ÚČET
+Zůstatek na tomto účtu je úročen vyhlašovanou úrokovou sazbou dle daného pásma a úroky se k jistině připisují čtvrtletně. Výběr z účtu je vázán zvolenou výpovědní dobou vkladu. Po zadání výpovědi části nebo celého vkladu a uplynutí dané výpovědní doby vkladu máte své finance k dispozici po dobu 7 kalendářních dnů. Tento typ účtu nabízíme také bez výpovědní doby vkladu, tzn. s prostředky na účtu je možno disponovat kdykoli.
+
+Vkladový účet EUR
+Výše zůstatku	Výpovědní doba
+		1M	3M	6M	12M	18M
+0 – 4 999,99	0,01 %	0,01 %	0,02 %	0,10 %	0,20 %
+5 000 – 19 999,99	0,01 %	0,01 %	0,02 %	0,10 %	0,20 %
+20 000 – 39 999,99	0,01 %	0,01 %	0,02 %	0,10 %	0,20 %
+40 000 – 59 999,99	0,01 %	0,01 %	0,02 %	0,10 %	0,20 %
+60 000 – 150 000	0,01 %	0,01 %	0,02 %	0,10 %	0,20 %
+U vkladů nad 150 000,- EUR lze dohodnout individuální sazbu.
+
+Vkladový účet USD
+Výše zůstatku	Výpovědní doba
+			1M	3M	6M	12M	18M
+0 – 4 999,99	0,05 %	0,10 %	0,15 %	0,20 %	0,25 %
+5 000 – 19 999,99	0,05 %	0,10 %	0,15 %	0,20 %	0,25 %
+20 000 – 39 999,99	0,05 %	0,10 %	0,15 %	0,20 %	0,25 %
+40 000 – 59 999,99	0,10 %	0,15 %	0,20 %	0,25 %	0,30 %
+60 000 – 150 000	0,10 %	0,15 %	0,20 %	0,25 %	0,30 %

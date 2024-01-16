@@ -1,0 +1,21 @@
+VKLADOVÝ ÚČET BONUS+
+Zůstatek na účtu je úročen vyhlašovanou úrokovou sazbou a úroky se připisují měsíčně. K základní úrokové sazbě můžete navíc získat bonus ve výši až 0,40 % p.a. Výše bonusu závisí na době vázanosti části vkladu, kterou zvolíte. Doba vázanosti může být 6, 12 nebo 24 měsíců. Bonus je na účet připsán po ukončení doby vázanosti části nebo celého vkladu a není automaticky obnovován. Pokud po dobu vázanosti klesne zůstatek pod zvolenou vázanou částku, ztrácíte nárok na bonus a bonus vám nebude připsán.
+
+Základní a bonusová úroková sazba při době vázanosti 6 měsíců 
+Výše zůstatku	Základní úroková sazba	Doba vázanosti - 6 měsíců - žádosti o bonus podané od 1. 9. 2020
+0 - 99 999,99	1,80	+ 0,15
+100 000 - 9 999 999,99	1,90	+ 0,15
+více jak 10 000 000	1,80	+ 0,15
+
+Základní a bonusová úroková sazba při době vázanosti 12 měsíců
+Výše zůstatku	Základní úroková sazba	Doba vázanosti - 12 měsíců - žádosti o bonus podané od 1. 9. 2020
+0 - 99 999,99	1,80	+ 0,25
+100 000 - 9 999 999,99	1,90	+ 0,25
+více jak 10 000 000	1,80	+ 0,25
+
+
+Základní a bonusová úroková sazba při době vázanosti 24 měsíců
+Výše zůstatku	Základní úroková sazba	Doba vázanosti - 24 měsíců - žádosti o bonus podané od 1. 9. 2020
+0 - 99 999,99	1,80	+ 0,40
+100 000 - 9 999 999,99	1,90	+ 0,40
+více jak 10 000 000	1,80	+ 0,40

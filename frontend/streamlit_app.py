@@ -1,4 +1,4 @@
-from stage.demo7_chatbot import ChatBot
+from trinity.chatbot import ChatBot
 import streamlit as st
 from data_model.question import Question
 from data_model.answer import Answer
